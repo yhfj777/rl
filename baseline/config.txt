@@ -1,0 +1,54 @@
+# Hungarian Baseline (Standard Version) - 跟踪参数配置
+# 创建时间: 2026-01-26
+# 用途: 标准 baseline，Precision ~95%, Recall ~85%
+
+# ==================== HungarianTracker.__init__ 参数 ====================
+
+# 距离与门控
+max_distance = 2.0              # 匹配距离阈值 (mm)
+hard_gating_radius = 4.0        # 硬门控半径 (max_distance * 2.0)
+gating_multiplier = 3.0         # 门控乘数
+
+# 轨迹确认与死亡
+confirm_frames = 1              # 确认轨迹所需帧数
+death_delay = 8                 # 轨迹死亡延迟帧数
+max_predict_horizon = 18        # 最大预测时域
+
+# 复活机制
+revival_maha_threshold = 6.0    # 复活 Mahalanobis 距离阈值
+revival_max_frames = 6          # 复活最大允许帧数
+
+# 晋升机制
+promotion_radius_ratio = 0.60   # 晋升半径比例
+max_promotions_per_frame = 20   # 每帧最大晋升数
+
+# 连续性
+continuity_bias = 0.5           # 连续性偏置
+continuity_max_ratio = 0.8      # 连续性最大比例
+
+# 轨迹管理
+max_new_tracks_per_frame = 15   # 每帧最大新轨迹数
+failure_cooldown_frames = 2     # 失败冷却帧数
+
+# 功能开关
+enable_tentative_buffer = False # 禁用 2 帧确认 buffer
+enable_advanced = True
+enable_assignment_stability = True
+enable_switch_confirm = True
+enable_merge_short = True
+
+# ==================== main() 函数参数 ====================
+
+data_path = "../simulate/simulate/dataset/test/test_tracks_complex.csv"
+max_velocity_diff = 3.0         # 最大速度差异
+max_frames_skip = 4             # 最大跳帧数
+
+# 评估参数
+def_eval_threshold = 0.8        # 评估匹配阈值 (严格)
+
+# ==================== 预期性能指标 ====================
+# Precision: ~95%
+# Recall: ~85%
+# MOTA: ~0.80
+# F1: ~0.89
+# FP: ~1600 (相比 GT 的误检)
